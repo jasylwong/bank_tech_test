@@ -14,9 +14,14 @@ describe 'Account' do
   end
 
   describe 'deposit' do
-    it 'provides a confirmation message' do
+    it 'provides a confirmation message when 500 deposited' do
       account = Account.new()
       expect(account.deposit(500)).to eq('Deposit of 500 made.')
+    end
+
+    it 'provides a confirmation message when 1000 deposited' do
+      account = Account.new()
+      expect(account.deposit(1000)).to eq('Deposit of 1000 made.')
     end
   end
 end

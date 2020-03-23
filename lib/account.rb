@@ -4,6 +4,6 @@ class Account
   end
 
   def deposit(amount)
-    "Deposit of 500 made."
+    "Deposit of #{amount} made."
   end
 end
