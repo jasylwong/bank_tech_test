@@ -1,29 +1,32 @@
 class Account
   def initialize
     @balance = 0
-    @transfers = ["date || credit || debit || balance"]
+    @transactions = []
   end
 
   def deposit(amount)
     @balance += amount
-    @transfers.insert(1, "#{current_date} || #{"%.2f" % amount} || || #{"%.2f" % @balance}") 
+    save_transaction("deposit", amount)
     "Deposit of #{amount} made. Balance: #{@balance}."
   end
 
   def withdraw(amount)
     @balance -= amount
-    @transfers.insert(1, "#{current_date} || || #{"%.2f" % amount} || #{"%.2f" % @balance}") 
+    save_transaction("withdrawal", amount)
     "Withdrawal of #{amount} made. Balance: #{@balance}."
   end
-
-  def print_statement
-    # print @statement.join("\n")
-    @transfers.join("\n")
+  
+  def show_transactions
+    @transactions
   end
 
   private
 
   def current_date
     Time.now.strftime("%m/%d/%y")
+  end
+
+  def save_transaction(type, amount)
+    @transactions.unshift({date: current_date, type: type, amount: "%.2f" % amount})
   end
 end

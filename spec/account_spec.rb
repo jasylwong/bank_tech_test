@@ -14,7 +14,7 @@ describe 'Account' do
     expect(account.instance_of? Account).to eq(true)
   end
 
-  describe 'deposit' do
+  describe '.deposit(amount)' do
     context 'confirmation message' do
       it 'provides a confirmation message when 500 deposited' do
         expect(account.deposit(500)).to eq("Deposit of 500 made. Balance: 500.")
@@ -27,7 +27,7 @@ describe 'Account' do
     end
   end
 
-  describe 'withdraw' do
+  describe '.withdraw(amount)' do
     context 'confirmation message' do
       it 'provides a confirmation message when 300 withdrawn' do
         account.deposit(500)
@@ -41,14 +41,22 @@ describe 'Account' do
     end
   end
 
-  describe 'print_statement' do
-    it 'prints blank statement before any transfers made' do
-      expect(account.print_statement).to eq('date || credit || debit || balance')
+  describe '.show_transactions' do
+    it 'shows transactions of deposits' do
+      account.deposit(250)
+      expect(account.show_transactions).to eq([{:amount=>"250.00", :date=>"03/23/20", :type=>"deposit"}])
     end
 
-    it 'prints statement after one deposit' do
-      account.deposit(1000)
-      expect(account.print_statement).to eq("date || credit || debit || balance\n#{current_date} || 1000.00 || || 1000.00")
+    it 'shows transactions of withdrawals' do
+      account.withdraw(345)
+      expect(account.show_transactions).to eq([{:amount=>"345.00", :date=>"03/23/20", :type=>"withdrawal"}])
+    end
+
+    it 'shows combinations of withdrawals & deposits' do
+      account.withdraw(690)
+      account.deposit(235)
+      expect(account.show_transactions).to eq([{:amount=>"235.00", :date=>"03/23/20", :type=>"deposit"},
+                                              {:amount=>"690.00", :date=>"03/23/20", :type=>"withdrawal"}])
     end
   end
 end
