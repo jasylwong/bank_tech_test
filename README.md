@@ -60,7 +60,8 @@ Edge cases/points to clarify
 
 - Blank message when no transfers yet?
 
-- Overdraft allowed?
+- Overdraft allowed? Yes
+- Overdraft limit?
 
 - Amounts as strings? All amounts valid/non-zero?
 
