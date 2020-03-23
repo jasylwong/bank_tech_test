@@ -13,17 +13,6 @@ describe 'Account' do
     expect(account.instance_of? Account).to eq(true)
   end
 
-  describe 'print_statement' do
-    it 'prints blank statement before any transfers made' do
-      expect(account.print_statement).to eq('date || credit || debit || balance')
-    end
-
-    it 'prints statement after one deposit' do
-      account.deposit(1000)
-      expect(account.print_statement).to eq("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00")
-    end
-  end
-
   describe 'deposit' do
     context 'confirmation message' do
       it 'provides a confirmation message when 500 deposited' do
@@ -44,4 +33,15 @@ describe 'Account' do
   #     end
   #   end
   # end
+  
+  describe 'print_statement' do
+    it 'prints blank statement before any transfers made' do
+      expect(account.print_statement).to eq('date || credit || debit || balance')
+    end
+
+    it 'prints statement after one deposit' do
+      account.deposit(1000)
+      expect(account.print_statement).to eq("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00")
+    end
+  end
 end

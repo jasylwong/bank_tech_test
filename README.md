@@ -85,6 +85,7 @@ Process
 - Test can open an account
 - Test print_statement method returns column headers before transfers made
 - Test deposit method provides confirmation message
+- Test print_statement method works for multiple deposits
 - Test withdraw method
 
 
