@@ -56,22 +56,22 @@ print_statement
 ---------------------------------------------------------
 Edge cases/points to clarify
 
-- Can open an account with nothing?
+- Can open an account with nothing? Yes
+
 - Blank message when no transfers yet?
-
-
-- Messages for withdraw/deposit
 
 - Overdraft allowed?
 
 - Amounts as strings? All amounts valid/non-zero?
 
-- How to test def initialize?
+- Return and/or print statement
 
+- How to test def initialize?
 - Assume things early on, eg all will be integers, or ask/address straight away?
 
 
 ---------------------------------------------------------
+
 Process
 - Set up repo
     - initialize rspec
@@ -85,6 +85,7 @@ Process
 - Test can open an account
 - Test print_statement method returns column headers before transfers made
 - Test deposit method provides confirmation message
+- Test withdraw method
 
 
-- Edge cases
+- Test edge cases
