@@ -1,3 +1,4 @@
+require 'transaction'
 require 'account'
 require 'statement'
 
