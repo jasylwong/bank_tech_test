@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Transaction' do
   let(:current_date) { Time.now.strftime("%m/%d/%y") }
-  let(:transaction) { Transaction.new("deposit", 500) }
+  let(:transaction) { Transaction.new(type: "deposit", amount: 500) }
 
   it 'allows creation of a deposit transaction' do
     expect(transaction.instance_of? Transaction).to eq(true)
@@ -10,7 +10,6 @@ describe 'Transaction' do
 
   describe '.type' do
     it 'returns the type' do
-
       expect(transaction.type).to eq("deposit")
     end
   end

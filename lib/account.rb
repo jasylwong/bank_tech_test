@@ -31,6 +31,6 @@ class Account
   end
 
   def save_transaction(type, amount)
-    @transactions.push({date: current_date, type: type, amount: amount})
+    @transactions.push(Transaction.new(type: type, amount: amount))
   end
 end

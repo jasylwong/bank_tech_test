@@ -13,18 +13,18 @@ class Statement
 
   def format_transactions
     @account.show_transactions.map do |transaction|
-      transaction[:type] == "deposit" ? deposit(transaction) : withdraw(transaction)
+      transaction.type == "deposit" ? deposit(transaction) : withdraw(transaction)
     end
       .reverse
   end
 
   def deposit(transaction)
-    @balance += transaction[:amount]
-    "#{transaction[:date]} || #{"%.2f" % transaction[:amount]} || || #{"%.2f" % @balance}"
+    @balance += transaction.amount
+    "#{transaction.date} || #{"%.2f" % transaction.amount} || || #{"%.2f" % @balance}"
   end
 
   def withdraw(transaction)
-    @balance -= transaction[:amount]
-    "#{transaction[:date]} || || #{"%.2f" % transaction[:amount]} || #{"%.2f" % @balance}"
+    @balance -= transaction.amount
+    "#{transaction.date} || || #{"%.2f" % transaction.amount} || #{"%.2f" % @balance}"
   end
 end

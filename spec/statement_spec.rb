@@ -4,6 +4,9 @@ describe 'Statement' do
   let(:account) { double :account }
   let(:statement) { Statement.new(account) }
   let(:current_date) { Time.now.strftime("%m/%d/%y") }
+  let(:deposit1) { double :transaction, date: current_date, type: "deposit", amount: 625.00}
+  let(:withdrawal1) { double :transaction, date: current_date, type: "withdrawal", amount: 250.00}
+  let(:withdrawal2) { double :transaction, date: current_date, type: "withdrawal", amount: 433.00}
 
   it 'allows creation of a new statement' do
     expect(statement.instance_of? Statement).to eq(true)
@@ -18,20 +21,20 @@ describe 'Statement' do
       end
     end
 
-    context 'one deposit' do
+    context 'one deposit' do      
       let(:account) { double :account, 
-                    show_transactions: [{date: current_date, type: "deposit", amount: 250.00}]}
+                    show_transactions: [deposit1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
         expect(statement.print)
-          .to eq("date || credit || debit || balance\n#{current_date} || 250.00 || || 250.00")
+          .to eq("date || credit || debit || balance\n#{current_date} || 625.00 || || 625.00")
       end
     end
 
     context 'one withdrawal' do
       let(:account) { double :account, 
-                    show_transactions: [{date: current_date, type: "withdrawal", amount: 250.00}]}
+                    show_transactions: [withdrawal1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -42,31 +45,28 @@ describe 'Statement' do
 
     context 'multiple transactions' do
       let(:account) { double :account, 
-                    show_transactions: [{date: current_date, type: "deposit", amount: 643.00},
-                                        {date: current_date, type: "withdrawal", amount: 123.00}]}
+                    show_transactions: [deposit1, withdrawal1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
         expect(statement.print)
           .to eq("date || credit || debit || balance"\
-                 "\n#{current_date} || || 123.00 || 520.00"\
-                 "\n#{current_date} || 643.00 || || 643.00")
+                 "\n#{current_date} || || 250.00 || 375.00"\
+                 "\n#{current_date} || 625.00 || || 625.00")
       end
     end
 
     context 'multiple transactions, going into overdraft' do
       let(:account) { double :account, 
-                    show_transactions: [{date: current_date, type: "deposit", amount: 643.00},
-                                        {date: current_date, type: "withdrawal", amount: 123.00},
-                                        {date: current_date, type: "withdrawal", amount: 750.00}]}
+                    show_transactions: [deposit1, withdrawal1, withdrawal2]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
         expect(statement.print)
           .to eq("date || credit || debit || balance"\
-                 "\n#{current_date} || || 750.00 || -230.00"\
-                 "\n#{current_date} || || 123.00 || 520.00"\
-                 "\n#{current_date} || 643.00 || || 643.00")
+                 "\n#{current_date} || || 433.00 || -58.00"\
+                 "\n#{current_date} || || 250.00 || 375.00"\
+                 "\n#{current_date} || 625.00 || || 625.00")
       end
     end
   end
