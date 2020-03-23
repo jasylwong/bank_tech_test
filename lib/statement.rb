@@ -1,15 +1,30 @@
 class Statement
-
   def initialize(account)
     @account = account
+    @balance = 0
   end
 
   def print
-    "date || credit || debit || balance"
-    # @account.show_transactions.map {|transaction|
-    #   "#{current_date} || #{"%.2f" % amount} || || #{"%.2f" % @balance}"
-    # }
+    headings = "date || credit || debit || balance"
+    @account.show_transactions.empty? ? headings : [headings, format_transactions].join("\n")
   end
-  
-  # @transactions.insert(1, "#{current_date} || #{"%.2f" % amount} || || #{"%.2f" % @balance}") 
+
+  private 
+
+  def format_transactions
+    @account.show_transactions.map do |transaction|
+      transaction[:type] == "deposit" ? deposit(transaction) : withdraw(transaction)
+    end
+      .reverse
+  end
+
+  def deposit(transaction)
+    @balance += transaction[:amount]
+    "#{transaction[:date]} || #{"%.2f" % transaction[:amount]} || || #{"%.2f" % @balance}"
+  end
+
+  def withdraw(transaction)
+    @balance -= transaction[:amount]
+    "#{transaction[:date]} || || #{"%.2f" % transaction[:amount]} || #{"%.2f" % @balance}"
+  end
 end

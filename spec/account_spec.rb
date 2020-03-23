@@ -44,19 +44,19 @@ describe 'Account' do
   describe '.show_transactions' do
     it 'shows transactions of deposits' do
       account.deposit(250)
-      expect(account.show_transactions).to eq([{:amount=>"250.00", :date=>"03/23/20", :type=>"deposit"}])
+      expect(account.show_transactions).to eq([{:amount=>250, :date=>"03/23/20", :type=>"deposit"}])
     end
 
     it 'shows transactions of withdrawals' do
       account.withdraw(345)
-      expect(account.show_transactions).to eq([{:amount=>"345.00", :date=>"03/23/20", :type=>"withdrawal"}])
+      expect(account.show_transactions).to eq([{:amount=>345, :date=>"03/23/20", :type=>"withdrawal"}])
     end
 
     it 'shows combinations of withdrawals & deposits' do
       account.withdraw(690)
       account.deposit(235)
-      expect(account.show_transactions).to eq([{:amount=>"235.00", :date=>"03/23/20", :type=>"deposit"},
-                                              {:amount=>"690.00", :date=>"03/23/20", :type=>"withdrawal"}])
+      expect(account.show_transactions).to eq([{:amount => 690, :date=>"03/23/20", :type=>"withdrawal"},
+                                              {:amount=>235, :date=>"03/23/20", :type=>"deposit"}])
     end
   end
 end

@@ -27,6 +27,6 @@ class Account
   end
 
   def save_transaction(type, amount)
-    @transactions.unshift({date: current_date, type: type, amount: "%.2f" % amount})
+    @transactions.push({date: current_date, type: type, amount: amount})
   end
 end
