@@ -15,29 +15,40 @@ describe 'Account' do
   end
 
   describe '.deposit(amount)' do
-    context 'confirmation message' do
-      it 'provides a confirmation message when 500 deposited' do
-        expect(account.deposit(500)).to eq("Deposit of 500 made. Balance: 500.")
-      end
+    it 'depositing 50 increases balance by 50' do
+      account.deposit(50)
+      expect(account.balance).to eq(50)
+    end
 
-      it 'provides a confirmation message when 1000 deposited on top of 500' do
-        account.deposit(500)
-        expect(account.deposit(1000)).to eq("Deposit of 1000 made. Balance: 1500.")
-      end
+    it 'accepts multiple separate deposits' do
+      account.deposit(530)
+      account.deposit(25)
+      expect(account.balance).to eq(555)
     end
   end
 
   describe '.withdraw(amount)' do
-    context 'confirmation message' do
-      it 'provides a confirmation message when 300 withdrawn' do
-        account.deposit(500)
-        expect(account.withdraw(300)).to eq("Withdrawal of 300 made. Balance: 200.")
-      end
+    # context 'confirmation message' do
+    #   it 'provides a confirmation message when 300 withdrawn' do
+    #     account.deposit(500)
+    #     expect(account.withdraw(300)).to eq("Withdrawal of 300 made. Balance: 200.")
+    #   end
 
-      it 'allows for overdrafts' do
-        account.deposit(500)
-        expect(account.withdraw(600)).to eq("Withdrawal of 600 made. Balance: -100.")
-      end
+    #   it 'allows for overdrafts' do
+    #     account.deposit(500)
+    #     expect(account.withdraw(600)).to eq("Withdrawal of 600 made. Balance: -100.")
+    #   end
+    # end
+    it 'withdrawing 750 decreases balance by 750' do
+      account.deposit(1000)
+      account.withdraw(1000)
+      expect(account.balance).to eq(50)
+    end
+
+    it 'accepts multiple separate deposits' do
+      account.deposit(530)
+      account.deposit(25)
+      expect(account.balance).to eq(555)
     end
   end
 

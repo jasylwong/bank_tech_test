@@ -20,6 +20,10 @@ class Account
     @transactions
   end
 
+  def balance
+    @balance
+  end
+
   private
 
   def current_date
