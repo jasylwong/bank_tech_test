@@ -14,7 +14,7 @@ describe 'Statement' do
 
   describe '.print' do
     context 'no transactions' do
-      let(:account) { double :account, show_transactions: []}
+      let(:account) { double :account, transactions: []}
       let(:statement) { Statement.new(account) }
       it 'returns a blank statement when no transactions made' do
         expect(statement.print).to eq("date || credit || debit || balance")
@@ -22,8 +22,7 @@ describe 'Statement' do
     end
 
     context 'one deposit' do      
-      let(:account) { double :account, 
-                    show_transactions: [deposit1]}
+      let(:account) { double :account, transactions: [deposit1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -33,8 +32,7 @@ describe 'Statement' do
     end
 
     context 'one withdrawal' do
-      let(:account) { double :account, 
-                    show_transactions: [withdrawal1]}
+      let(:account) { double :account, transactions: [withdrawal1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -44,8 +42,7 @@ describe 'Statement' do
     end
 
     context 'multiple transactions' do
-      let(:account) { double :account, 
-                    show_transactions: [deposit1, withdrawal1]}
+      let(:account) { double :account, transactions: [deposit1, withdrawal1]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -58,7 +55,7 @@ describe 'Statement' do
 
     context 'multiple transactions, going into overdraft' do
       let(:account) { double :account, 
-                    show_transactions: [deposit1, withdrawal1, withdrawal2]}
+                    transactions: [deposit1, withdrawal1, withdrawal2]}
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do

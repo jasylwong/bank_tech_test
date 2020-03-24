@@ -49,29 +49,28 @@ describe 'Account' do
     end
   end
 
-  describe '.show_transactions' do
+  describe '.transactions' do
     let(:deposit1) { double :transaction, date: current_date, type: "deposit", amount: 250 }
-
 
     it 'shows transactions of deposits' do
       account.deposit(250)
-      expect(account.show_transactions[0]).to be_a(Transaction)
-      expect(account.show_transactions[0].type).to eq("deposit")
-      expect(account.show_transactions[0].amount).to eq(250)
-      expect(account.show_transactions[0].date).to eq(current_date)
+      expect(account.transactions[0]).to be_a(Transaction)
+      expect(account.transactions[0].type).to eq("deposit")
+      expect(account.transactions[0].amount).to eq(250)
+      expect(account.transactions[0].date).to eq(current_date)
     end
 
     it 'shows transactions of withdrawals' do
       account.withdraw(345)
-      expect(account.show_transactions[0]).to be_a(Transaction)
-      expect(account.show_transactions[0].type).to eq("withdrawal")
+      expect(account.transactions[0]).to be_a(Transaction)
+      expect(account.transactions[0].type).to eq("withdrawal")
     end
 
     it 'shows combinations of withdrawals & deposits' do
       account.withdraw(690)
       account.deposit(235)
-      expect(account.show_transactions[0].type).to eq("withdrawal")
-      expect(account.show_transactions[1].type).to eq("deposit")
+      expect(account.transactions[0].type).to eq("withdrawal")
+      expect(account.transactions[1].type).to eq("deposit")
     end
   end
 end

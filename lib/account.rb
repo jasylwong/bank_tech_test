@@ -1,4 +1,6 @@
 class Account
+  attr_reader :transactions, :balance
+
   def initialize
     @balance = 0
     @transactions = []
@@ -15,20 +17,8 @@ class Account
     save_transaction("withdrawal", amount)
     "Withdrawal of #{amount} made. Balance: #{@balance}."
   end
-  
-  def show_transactions
-    @transactions
-  end
-
-  def balance
-    @balance
-  end
 
   private
-
-  def current_date
-    Time.now.strftime("%m/%d/%y")
-  end
 
   def save_transaction(type, amount)
     @transactions.push(Transaction.new(type: type, amount: amount))

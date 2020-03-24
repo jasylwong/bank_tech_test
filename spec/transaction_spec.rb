@@ -16,14 +16,12 @@ describe 'Transaction' do
 
   describe '.date' do
     it 'returns the date' do
-
       expect(transaction.date).to eq(current_date)
     end
   end
 
   describe '.amount' do
     it 'returns the amount' do
-
       expect(transaction.amount).to eq(500)
     end
   end
