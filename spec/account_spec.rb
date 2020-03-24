@@ -4,12 +4,6 @@ describe 'Account' do
   let(:account) { Account.new }
   let(:current_date) { Time.now.utc.strftime("%m/%d/%y") }
 
-  # describe 'initialize' do
-  #   it 'initializes with a balance of zero' do
-  #     expect(account.balance).to eq 0
-  #   end
-  # end
-
   it 'allows opening of a new account' do
     expect(account.instance_of? Account).to eq(true)
   end
