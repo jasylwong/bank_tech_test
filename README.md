@@ -1,6 +1,6 @@
 # Bank Tech Test 🏦
 
-[Objective](#Objective) | [Process](#process) | [User Stories](#user_stories) | [Installation](#Installation)
+[Objective](#Objective) | [Process](#process) | [User Stories](#user_stories) | [Running the program](#running_the_program)
 
 ## Objective
 
@@ -65,7 +65,7 @@ Statement | display | account, balance
 
 - Address edge cases eg. allow for amounts input as strings rather than integers/floats.
 
-## User stories:
+## <a name="user_stories">User stories</a>
 
 ```
 As a bank customer
@@ -88,7 +88,7 @@ I want to print off my statement
 So I can see my balance and what transfers I've made and when
 ```
 
-## Installation
+## <a name="running_the_program">Running the program</a>
 
 ### Setup
 ```
