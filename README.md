@@ -24,11 +24,11 @@ This is the approach I took for designing and creating this solution:
 
 - Create user stories (see below) based on the client's requirements
 
-- Draw up class, state, method diagrams:
+- Draw up class, state, method diagrams based on the user stories:
     - The classes were determined by considering the nouns in the user stories.
         I decided on three overall: transactions, amounts and statements, as they 
             are all distinct objects in real life. This also helped with the encapsulation principle.
-    - Accounts are made up transactions, so the account class depends on the transaction objects.
+    - Accounts are made up of transactions, so the account class depends on the transaction objects.
     - Statements need information from an account, so the statement class depends on the account object.
     - Methods and attributes for each class were restricted to only what each class could be 
         expected to do/have.
@@ -72,6 +72,7 @@ $ cd bank_tech_test
 
 ### Testing, code coverage, and code style
 ```
+$ bundle
 $ rspec # All tests passing, coverage: 100%
 $ rubocop # No offenses
 ```
