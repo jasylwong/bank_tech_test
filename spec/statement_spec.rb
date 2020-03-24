@@ -3,10 +3,10 @@ require 'spec_helper'
 describe 'Statement' do
   let(:account) { double :account }
   let(:statement) { Statement.new(account) }
-  let(:current_date) { Time.now.strftime("%m/%d/%y") }
-  let(:deposit1) { double :transaction, date: current_date, type: "deposit", amount: 1000.00}
-  let(:deposit2) { double :transaction, date: current_date, type: "deposit", amount: 2000.00}
-  let(:withdrawal1) { double :transaction, date: current_date, type: "withdrawal", amount: 500.00}
+  let(:current_date) { Time.now.utc.strftime("%m/%d/%y") }
+  let(:deposit1) { double :transaction, date: current_date, type: "deposit", amount: 1000.00 }
+  let(:deposit2) { double :transaction, date: current_date, type: "deposit", amount: 2000.00 }
+  let(:withdrawal1) { double :transaction, date: current_date, type: "withdrawal", amount: 500.00 }
 
   it 'allows creation of a new statement' do
     expect(statement.instance_of? Statement).to eq(true)
@@ -14,7 +14,7 @@ describe 'Statement' do
 
   describe '.display' do
     context 'no transactions' do
-      let(:account) { double :account, transactions: []}
+      let(:account) { double :account, transactions: [] }
       let(:statement) { Statement.new(account) }
       it 'returns a blank statement when no transactions made' do
         expect(statement.display).to eq("date || credit || debit || balance")
@@ -22,7 +22,7 @@ describe 'Statement' do
     end
 
     context 'one deposit' do      
-      let(:account) { double :account, transactions: [deposit1]}
+      let(:account) { double :account, transactions: [deposit1] }
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -32,7 +32,7 @@ describe 'Statement' do
     end
 
     context 'one withdrawal' do
-      let(:account) { double :account, transactions: [withdrawal1]}
+      let(:account) { double :account, transactions: [withdrawal1] }
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
@@ -42,8 +42,7 @@ describe 'Statement' do
     end
 
     context 'combination of transactions' do
-      let(:account) { double :account, 
-                    transactions: [deposit1, deposit2, withdrawal1]}
+      let(:account) { double :account, transactions: [deposit1, deposit2, withdrawal1] }
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do

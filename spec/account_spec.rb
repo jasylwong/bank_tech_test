@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Account' do
   let(:account) { Account.new }
-  let(:current_date) { Time.now.strftime("%m/%d/%y") }
+  let(:current_date) { Time.now.utc.strftime("%m/%d/%y") }
 
   # describe 'initialize' do
   #   it 'initializes with a balance of zero' do

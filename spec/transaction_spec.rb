@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Transaction' do
-  let(:current_date) { Time.now.strftime("%m/%d/%y") }
+  let(:current_date) { Time.now.utc.strftime("%m/%d/%y") }
   let(:transaction) { Transaction.new(type: "deposit", amount: 500) }
 
   it 'allows creation of a deposit transaction' do
