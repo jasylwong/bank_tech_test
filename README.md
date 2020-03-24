@@ -1,15 +1,36 @@
-# Bank Tech Test
+# Bank Tech Test 🏦
 
----------------------------------------------------------
+[Objective](#Objective) | [Process](#process) | [User Stories](#user_stories) | [Installation](#Installation)
 
-## Requirements:
- - Interaction with a REPL
- - Deposit feature
- - Withdraw feature
- - A/C statement printing feature (data, amount, balance)
- - Data kept in memory (not a database)
+## Objective
 
----------------------------------------------------------
+Enable the user to create a bank account in which money can be deposited and withdrawn, and statements
+printed.
+
+This solution was built using Ruby, and is based on the Makers week 10 tech test challenge 1. [Click here](https://github.com/makersacademy/course/blob/master/individual_challenges/bank_tech_test.md) for the original README.md.
+
+## Process
+
+This is the approach I took for designing and creating this solution:
+
+- Set up repo
+    - initialize rspec
+    - initialize git
+    - setup code coverage and code quality testers
+- Verify areas of uncertainty with the client:
+    - Overdraft allowed? Yes
+    - Overdraft limit? No
+- Create user stories based on the client's requirements
+- Draw up class, state, method diagrams
+    - The classes were determined by considering the nouns in the user stories.
+        I decided on three overall: transactions, amounts and statements, as they 
+            are all distinct objects in real life. This also helped with the encapsulation principle.
+    - Methods and attributes for each class were restricted to only what each class could be 
+        expected to do/have.
+- Write the code, using TDD!
+    - Methods were made to adhere to the Single Responsibility Principle as much as possible.
+    - As many methods as possible were made private within their respective classes.
+- Address edge cases eg. allow for amounts input as strings rather than integers/floats
 
 ## User stories:
 
@@ -34,58 +55,37 @@ I want to print off my statement
 So I can see my balance and what transfers I've made and when
 ```
 
----------------------------------------------------------
+## Installation
 
+### Setup
+```
+$ git clone https://github.com/jasylwong/bank_tech_test.git
+$ cd bank_tech_test
+```
 
-## Input | Output
+### Testing, code coverage, and code style
+```
+$ rspec # All tests passing, coverage: 100%
+$ rubocop # No offenses
+```
 
------
-deposit(amount)
-500 : '500 has been deposited in your account. Current balance?'
-
-----
-withdraw(amount)
-
-
-
-
------
-print_statement
-
-
----------------------------------------------------------
-Edge cases/points to clarify
-
-- Can open an account with nothing? Yes
-
-- Blank message when no transfers yet?
-
-- Overdraft allowed? Yes
-- Overdraft limit?
-
-- Amounts as strings? All amounts?
-
-- How to test def initialize?
-- Assume things early on, eg all will be integers, or ask/address straight away?
-
-
----------------------------------------------------------
-
-Process
-- Set up repo
-    - initialize rspec
-    - initialize git
-- Decide what classes are needed
-- Draw up class, state, method diagram
-- README
-    - Rewrite requirements
-    - User stories
-    - Input / output table
-- Test can open an account
-- Test print_statement method returns column headers before transfers made
-- Test deposit method provides confirmation message
-- Test print_statement method works for multiple deposits
-- Test withdraw method
-
-
-- Test edge cases
+### Example usage in irb
+```
+$ irb
+> require './lib/load'
+ => true 
+> account = Account.new
+ => #<Account:0x00007fe10c83f780> 
+> account.deposit(350)
+ => "Deposit of 350 made. Balance: 350." 
+> account.withdraw(200)
+ => "Withdrawal of 200 made. Balance: 150." 
+> account.balance
+ => 150.0 
+> statement = Statement.new(account)
+ => #<Statement:0x00007fe10b8a3f38> 
+> print statement.display
+date || credit || debit || balance
+03/24/20 || || 200.00 || 150.00
+03/24/20 || 350.00 || || 350.00
+```
