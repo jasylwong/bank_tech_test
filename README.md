@@ -45,13 +45,6 @@ This is the approach I took for designing and creating this solution:
 - Create user stories (see below) based on the client's requirements
 
 - Draw up class, state, method diagrams based on the user stories:
-
-Class  | Public methods | Attributes
---- | --- | ---
-Transaction | - | type, date, amount
-Account  | deposit(amount), withdraw(amount) | transactions, balance
-Statement | display | account, balance
-
     - The classes were determined by considering the nouns in the user stories.
         I decided on three overall: transactions, amounts and statements, as they 
             are all distinct objects in real life. This also helped with the encapsulation principle.
@@ -59,6 +52,12 @@ Statement | display | account, balance
     - Statements need information from an account, so the statement class depends on the account object.
     - Methods and attributes for each class were restricted to only what each class could be 
         expected to do/have.
+
+Class  | Public methods | Attributes
+--- | --- | ---
+Transaction | - | type, date, amount
+Account  | deposit(amount), withdraw(amount) | transactions, balance
+Statement | display | account, balance
 
 - Write the code, using TDD!
     - Methods were made to adhere to the Single Responsibility Principle as much as possible.
