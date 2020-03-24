@@ -19,14 +19,18 @@ class Statement
   end
 
   def show_deposit(transaction)
-    "%.2f" % transaction.amount + " " if transaction.type == "deposit"
+    "%.2f" % transaction.amount + " " if deposit?(transaction)
   end
 
   def show_withdrawal(transaction)
-    "%.2f" % transaction.amount + " " if transaction.type == "withdrawal"
+    "%.2f" % transaction.amount + " " unless deposit?(transaction)
   end
 
   def show_balance(transaction)
-    "%.2f" % @balance += (transaction.type == "deposit" ? transaction.amount : -transaction.amount)
+    "%.2f" % @balance += (deposit?(transaction) ? transaction.amount : -transaction.amount)
+  end
+
+  def deposit?(transaction)
+    transaction.type == "deposit"
   end
 end

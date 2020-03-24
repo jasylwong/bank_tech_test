@@ -65,8 +65,6 @@ Edge cases/points to clarify
 
 - Amounts as strings? All amounts?
 
-- Return and/or print statement
-
 - How to test def initialize?
 - Assume things early on, eg all will be integers, or ask/address straight away?
 
