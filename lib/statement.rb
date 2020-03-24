@@ -1,21 +1,22 @@
 class Statement
+  HEADER = "date || credit || debit || balance"
+
   def initialize(account)
     @account = account
     @balance = 0
   end
 
   def display
-    headings = "date || credit || debit || balance"
-    format_transactions.unshift(headings).join("\n")
+    format_transactions.unshift(HEADER).join("\n")
   end
 
   private 
 
   def format_transactions
     @account.transactions.map do |transaction|
-      "#{transaction.date} || #{show_deposit(transaction)}|| #{show_withdrawal(transaction)}|| #{show_balance(transaction)}"
-    end
-      .reverse
+      "#{transaction.date} || #{show_deposit(transaction)}||"\
+      " #{show_withdrawal(transaction)}|| #{show_balance(transaction)}"
+    end.reverse
   end
 
   def show_deposit(transaction)

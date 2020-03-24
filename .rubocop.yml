@@ -42,7 +42,7 @@ require: rubocop-rails
 # So we'll give you a break. As you learn, try removing the next two sections.
 
 Metrics/LineLength:
-  Max: 125
+  Max: 100
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
