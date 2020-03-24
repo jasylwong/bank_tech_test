@@ -13,24 +13,29 @@ This solution was built using Ruby, and is based on the Makers week 10 tech test
 
 This is the approach I took for designing and creating this solution:
 
-- Set up repo
-    - initialize rspec
-    - initialize git
-    - setup code coverage and code quality testers
+- Set up repo:
+    - Initialize RSpec
+    - Initialize Git
+    - Setup code coverage (SimpleCov) and code quality (RuboCop) testers
+
 - Verify areas of uncertainty with the client:
     - Overdraft allowed? Yes
     - Overdraft limit? No
-- Create user stories based on the client's requirements
-- Draw up class, state, method diagrams
+
+- Create user stories (see below) based on the client's requirements
+
+- Draw up class, state, method diagrams:
     - The classes were determined by considering the nouns in the user stories.
         I decided on three overall: transactions, amounts and statements, as they 
             are all distinct objects in real life. This also helped with the encapsulation principle.
     - Methods and attributes for each class were restricted to only what each class could be 
         expected to do/have.
+
 - Write the code, using TDD!
     - Methods were made to adhere to the Single Responsibility Principle as much as possible.
     - As many methods as possible were made private within their respective classes.
-- Address edge cases eg. allow for amounts input as strings rather than integers/floats
+    
+- Address edge cases eg. allow for amounts input as strings rather than integers/floats.
 
 ## User stories:
 
