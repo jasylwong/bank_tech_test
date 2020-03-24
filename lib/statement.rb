@@ -4,7 +4,7 @@ class Statement
     @balance = 0
   end
 
-  def print
+  def display
     headings = "date || credit || debit || balance"
     format_transactions.unshift(headings).join("\n")
   end
@@ -13,18 +13,20 @@ class Statement
 
   def format_transactions
     @account.transactions.map do |transaction|
-      transaction.type == "deposit" ? show_deposit(transaction) : show_withdraw(transaction)
+      "#{transaction.date} || #{show_deposit(transaction)}|| #{show_withdrawal(transaction)}|| #{show_balance(transaction)}"
     end
       .reverse
   end
 
   def show_deposit(transaction)
-    @balance += transaction.amount
-    "#{transaction.date} || #{"%.2f" % transaction.amount} || || #{"%.2f" % @balance}"
+    "%.2f" % transaction.amount + " " if transaction.type == "deposit"
   end
 
-  def show_withdraw(transaction)
-    @balance -= transaction.amount
-    "#{transaction.date} || || #{"%.2f" % transaction.amount} || #{"%.2f" % @balance}"
+  def show_withdrawal(transaction)
+    "%.2f" % transaction.amount + " " if transaction.type == "withdrawal"
+  end
+
+  def show_balance(transaction)
+    "%.2f" % @balance += (transaction.type == "deposit" ? transaction.amount : -transaction.amount)
   end
 end

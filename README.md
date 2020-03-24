@@ -63,7 +63,7 @@ Edge cases/points to clarify
 - Overdraft allowed? Yes
 - Overdraft limit?
 
-- Amounts as strings? All amounts valid/non-zero?
+- Amounts as strings? All amounts?
 
 - Return and/or print statement
 

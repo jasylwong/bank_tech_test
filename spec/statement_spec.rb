@@ -12,12 +12,12 @@ describe 'Statement' do
     expect(statement.instance_of? Statement).to eq(true)
   end
 
-  describe '.print' do
+  describe '.display' do
     context 'no transactions' do
       let(:account) { double :account, transactions: []}
       let(:statement) { Statement.new(account) }
       it 'returns a blank statement when no transactions made' do
-        expect(statement.print).to eq("date || credit || debit || balance")
+        expect(statement.display).to eq("date || credit || debit || balance")
       end
     end
 
@@ -26,7 +26,7 @@ describe 'Statement' do
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(statement.print)
+        expect(statement.display)
           .to eq("date || credit || debit || balance\n#{current_date} || 625.00 || || 625.00")
       end
     end
@@ -36,7 +36,7 @@ describe 'Statement' do
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(statement.print)
+        expect(statement.display)
           .to eq("date || credit || debit || balance\n#{current_date} || || 250.00 || -250.00")
       end
     end
@@ -46,7 +46,7 @@ describe 'Statement' do
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(statement.print)
+        expect(statement.display)
           .to eq("date || credit || debit || balance"\
                  "\n#{current_date} || || 250.00 || 375.00"\
                  "\n#{current_date} || 625.00 || || 625.00")
@@ -59,7 +59,7 @@ describe 'Statement' do
 
       let(:statement) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(statement.print)
+        expect(statement.display)
           .to eq("date || credit || debit || balance"\
                  "\n#{current_date} || || 433.00 || -58.00"\
                  "\n#{current_date} || || 250.00 || 375.00"\

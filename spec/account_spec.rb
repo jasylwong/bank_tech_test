@@ -50,8 +50,6 @@ describe 'Account' do
   end
 
   describe '.transactions' do
-    let(:deposit1) { double :transaction, date: current_date, type: "deposit", amount: 250 }
-
     it 'shows transactions of deposits' do
       account.deposit(250)
       expect(account.transactions[0]).to be_a(Transaction)
@@ -74,4 +72,3 @@ describe 'Account' do
     end
   end
 end
-
