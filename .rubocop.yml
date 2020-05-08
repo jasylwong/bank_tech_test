@@ -408,6 +408,9 @@ PreferredHashMethods:
   Enabled: false
 Proc:
   Enabled: false
+# Consider removing this
+Rails/Output:
+  Enabled: false
 RaiseArgs:
   Enabled: false
 RedundantBegin:
