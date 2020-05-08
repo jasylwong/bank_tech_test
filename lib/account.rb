@@ -8,12 +8,12 @@ class Account
 
   def deposit(amount)
     save_transaction("deposit", amount)
-    "Deposit of #{amount} made. Balance: #{@balance += amount}."
+    @balance += amount
   end
 
   def withdraw(amount)
     save_transaction("withdrawal", amount)
-    "Withdrawal of #{amount} made. Balance: #{@balance -= amount}."
+    @balance -= amount
   end
 
   private

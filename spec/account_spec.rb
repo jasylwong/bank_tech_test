@@ -28,10 +28,11 @@ describe 'Account' do
       expect(subject.balance).to eq(250)
     end
 
-    it 'accepts multiple separate deposits' do
-      subject.deposit(530)
-      subject.deposit(25)
-      expect(subject.balance).to eq(555)
+    it 'accepts multiple separate withrawals' do
+      subject.deposit(1000)
+      subject.withdraw(200)
+      subject.withdraw(45)
+      expect(subject.balance).to eq(755)
     end
   end
 
