@@ -111,9 +111,7 @@ $ irb
 > account = Account.new
  => #<Account:0x00007fe10c83f780> 
 > account.deposit(350)
- => "Deposit of 350 made. Balance: 350." 
 > account.withdraw(200)
- => "Withdrawal of 200 made. Balance: 150." 
 > account.balance
  => 150.0 
 > statement = Statement.new(account)
