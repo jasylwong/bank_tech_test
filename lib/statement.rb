@@ -7,7 +7,7 @@ class Statement
   end
 
   def display
-    format_transactions.unshift(HEADER).join("\n")
+    no_transactions? ? HEADER : [HEADER, format_transactions].join("\n")
   end
 
   private 
@@ -33,5 +33,9 @@ class Statement
 
   def deposit?(transaction)
     transaction.type == "deposit"
+  end
+
+  def no_transactions?
+    @account.transactions.empty?
   end
 end
