@@ -57,7 +57,7 @@ Class  | Public methods | Attributes
 --- | --- | ---
 Transaction | - | type, date, amount
 Account  | deposit(amount), withdraw(amount) | transactions, balance
-Statement | display | account, balance
+Statement | print_out | account, balance
 
 - Write the code, using TDD!
     - Methods were made to adhere to the Single Responsibility Principle as much as possible.
@@ -116,7 +116,7 @@ $ irb
  => 150.0 
 > statement = Statement.new(account)
  => #<Statement:0x00007fe10b8a3f38> 
-> print statement.display
+> statement.print_out
 date || credit || debit || balance
 03/24/20 || || 200.00 || 150.00
 03/24/20 || 350.00 || || 350.00

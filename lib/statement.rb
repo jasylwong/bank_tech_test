@@ -7,7 +7,7 @@ class Statement
   end
 
   def print_out
-    puts no_transactions? ? HEADER : [HEADER, format_transactions].join("\n")
+    print no_transactions? ? HEADER : [HEADER, format_transactions].join("\n")
   end
 
   private 
