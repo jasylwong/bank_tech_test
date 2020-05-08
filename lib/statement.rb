@@ -6,8 +6,8 @@ class Statement
     @balance = 0
   end
 
-  def display
-    no_transactions? ? HEADER : [HEADER, format_transactions].join("\n")
+  def print_out
+    print no_transactions? ? HEADER : [HEADER, format_transactions].join("\n")
   end
 
   private 

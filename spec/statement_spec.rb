@@ -12,12 +12,13 @@ describe 'Statement' do
     expect(subject.instance_of? Statement).to eq(true)
   end
 
-  describe '.display' do
+  describe '.print_out' do
     context 'no transactions' do
       let(:account) { double :account, transactions: [] }
       let(:subject) { Statement.new(account) }
       it 'returns a blank statement when no transactions made' do
-        expect(subject.display).to eq("date || credit || debit || balance")
+        expect { subject.print_out }
+          .to output("date || credit || debit || balance").to_stdout
       end
     end
 
@@ -26,8 +27,9 @@ describe 'Statement' do
 
       let(:subject) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(subject.display)
-          .to eq("date || credit || debit || balance\n#{current_date} || 1000.00 || || 1000.00")
+        expect { subject.print_out }
+          .to output("date || credit || debit || balance\n#{current_date} || 1000.00 || || 1000.00")
+            .to_stdout
       end
     end
 
@@ -36,8 +38,9 @@ describe 'Statement' do
 
       let(:subject) { Statement.new(account) }
       it 'returns a one line statement following one deposit' do
-        expect(subject.display)
-          .to eq("date || credit || debit || balance\n#{current_date} || || 500.00 || -500.00")
+        expect { subject.print_out }
+          .to output("date || credit || debit || balance\n#{current_date} || || 500.00 || -500.00")
+            .to_stdout
       end
     end
 
@@ -46,11 +49,11 @@ describe 'Statement' do
 
       let(:subject) { Statement.new(account) }
       it 'returns full statement following multiple transactions' do
-        expect(subject.display)
-          .to eq("date || credit || debit || balance"\
+        expect { subject.print_out }
+          .to output("date || credit || debit || balance"\
                  "\n#{current_date} || || 500.00 || 2500.00"\
                  "\n#{current_date} || 2000.00 || || 3000.00"\
-                 "\n#{current_date} || 1000.00 || || 1000.00")
+                 "\n#{current_date} || 1000.00 || || 1000.00").to_stdout
       end
     end
   end

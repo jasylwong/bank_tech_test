@@ -15,4 +15,4 @@ p account.withdraw(500)
 p "----------"
 statement = Statement.new(account)
 p "New statement: #{statement}"
-print statement.display
+statement.print_out
